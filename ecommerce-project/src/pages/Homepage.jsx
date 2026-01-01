@@ -5,18 +5,14 @@ import CheckmarkIcon from '../assets/images/icons/checkmark.png';
 
 
 import './HomePage.css';
-export function HomePage() {
+export function HomePage({cart}) {
     const[products,setProducts] =useState([]);
-    const[cart,setcart] =useState([]);
     useEffect(()=>{
         axios.get('/api/products')
             .then((response)=>{
                 setProducts(response.data)
             });
-            axios.get('/api/cart-items')
-            .then((response)=>{
-                setcart(response.data)
-            });    
+                
     },[]);
     
     
