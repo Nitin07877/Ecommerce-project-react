@@ -39,8 +39,10 @@
 }
 
 .header .logo {
-  height: 90px;
+  height: 40px;
+  width: 140px;
   margin-top: 1px;
+  object-fit: cover;
 }
 
 .header .mobile-logo {
