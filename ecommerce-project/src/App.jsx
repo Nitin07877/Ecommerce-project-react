@@ -12,10 +12,11 @@ import './App.css'
 function App() {
   const [cart, setcart] = useState([]);
   useEffect(() => {
-    axios.get('/api/cart-items?expand=product')
-      .then((response) => {
+    const fetchAppData= async ()=>{
+      const response=await axios.get('/api/cart-items?expand=product')
         setcart(response.data)
-      });
+    };
+    fetchAppData();
   }, []);
 
 
