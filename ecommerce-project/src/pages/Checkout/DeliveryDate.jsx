@@ -5,6 +5,7 @@ export function DeliveryDate({ cartItem, deliveryOptions }) {
     .find((deliveryOption) => {
       return deliveryOption.id === cartItem.deliveryOptionId;
     });
+    
 
   return (
     <div className="delivery-date">
