@@ -47,6 +47,7 @@
   color: rgb(25, 135, 84);
 }
 
+
 @media (max-width: 575px) {
   .tracking-page .progress-labels-container {
     font-size: 16px;
