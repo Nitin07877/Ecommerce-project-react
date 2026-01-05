@@ -2,7 +2,7 @@
 import { Product } from './Product';
 
 
-export function ProductGrid({products,loadCart}) {
+export function ProductsGrid({products,loadCart}) {
     
     return (
         <div className="products-grid">

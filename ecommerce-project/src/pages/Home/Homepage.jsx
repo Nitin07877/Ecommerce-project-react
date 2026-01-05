@@ -4,7 +4,7 @@ import { Header } from '../../components/Header';
 import { useSearchParams } from 'react-router';
 
 
-import { ProductGrid } from './ProductsGrid';
+import { ProductsGrid } from './ProductsGrid';
 
 
 import './HomePage.css';
@@ -29,7 +29,7 @@ export function HomePage({cart , loadCart}) {
             <Header cart={cart}/>
 
             <div className="home-page">
-                <ProductGrid products={products} loadCart={loadCart}/>
+                <ProductsGrid products={products} loadCart={loadCart}/>
             </div>
         </>
 
