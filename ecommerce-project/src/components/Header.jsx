@@ -4,7 +4,7 @@ import SearchIcon from '../assets/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import { useState } from 'react';
-import './Header.css'
+import './header.css'
 export function Header({ cart = [] }) {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
