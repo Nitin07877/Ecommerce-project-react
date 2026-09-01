@@ -13,10 +13,13 @@
   left: 0;
   right: 0;
   height: 60px;
+
+  z-index: 1000;
 }
 
 .header .left-section {
   width: 208px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 800px) {
@@ -37,6 +40,10 @@
 .header .header-link:hover {
   border: 1px solid white;
 }
+
+/* =========================
+   LOGO
+========================= */
 
 .header .logo {
   height: 40px;
@@ -61,6 +68,10 @@
   }
 }
 
+/* =========================
+   SEARCH
+========================= */
+
 .header .middle-section {
   flex: 1;
   max-width: 850px;
@@ -76,6 +87,8 @@
   height: 38px;
   padding-left: 15px;
   border: none;
+  outline: none;
+
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 0;
@@ -87,32 +100,52 @@
   border: none;
   width: 45px;
   height: 40px;
+
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+
   flex-shrink: 0;
+  cursor: pointer;
+}
+
+.header .search-button:hover {
+  background-color: rgb(160, 245, 170);
 }
 
 .header .search-icon {
   height: 20px;
-  margin-left: 0px;
+  margin-left: 0;
   margin-top: 3px;
 }
 
+/* =========================
+   RIGHT SECTION
+========================= */
+
 .header .right-section {
-  width: 180px;
+  min-width: 300px;
   flex-shrink: 0;
+
   display: flex;
-  justify-content: end;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
 }
+
+/* =========================
+   ORDERS
+========================= */
 
 .header .orders-link {
   color: white;
 
   display: flex;
   align-items: center;
+
   padding-left: 13px;
   padding-right: 13px;
 }
+
 .header .orders-link.active {
   text-decoration: underline;
 }
@@ -123,10 +156,16 @@
   font-weight: 700;
 }
 
+/* =========================
+   CART
+========================= */
+
 .header .cart-link {
   color: white;
+
   display: flex;
   align-items: center;
+
   position: relative;
 }
 
@@ -136,12 +175,14 @@
 
 .header .cart-text {
   margin-left: 5px;
+
   font-size: 15px;
   font-weight: 700;
 }
 
 .header .cart-quantity {
   color: rgb(8, 79, 45);
+
   font-size: 14px;
   font-weight: 700;
 
@@ -151,4 +192,169 @@
 
   width: 26px;
   text-align: center;
+}
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+.header .auth-header-link {
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header .auth-header-link:hover {
+  border-color: white;
+}
+
+/* =========================
+   USER GREETING
+========================= */
+
+.header .user-greeting {
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.header .logout-button {
+  background-color: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+
+  color: white;
+
+  padding: 7px 10px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.header .logout-button:hover {
+  background-color: white;
+  color: rgb(8, 79, 45);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+  .header .right-section {
+    min-width: 240px;
+  }
+
+  .header .user-greeting {
+    font-size: 13px;
+  }
+
+  .header .auth-header-link {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .header .orders-link {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 675px) {
+  .header {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .header .middle-section {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  .header .right-section {
+    min-width: unset;
+    width: auto;
+  }
+
+  .header .user-greeting {
+    display: none;
+  }
+
+  .header .orders-link {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .header .orders-text {
+    display: none;
+  }
+
+  .header .auth-header-link {
+    font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .header .logout-button {
+    font-size: 12px;
+    padding: 6px 7px;
+  }
+
+  .header .cart-icon {
+    width: 34px;
+  }
+
+  .header .cart-text {
+    display: none;
+  }
+
+  .header .cart-quantity {
+    top: 7px;
+    right: 32px;
+    font-size: 12px;
+    width: 22px;
+  }
+}
+
+/* =========================
+   VERY SMALL SCREENS
+========================= */
+
+@media (max-width: 450px) {
+  .header .auth-header-link {
+    font-size: 12px;
+  }
+
+  .header .logout-button {
+    padding: 5px 6px;
+  }
+
+  .header .search-button {
+    width: 40px;
+  }
 }

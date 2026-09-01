@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -13,12 +14,14 @@ import { Product } from './models/Product.js';
 import { DeliveryOption } from './models/DeliveryOption.js';
 import { CartItem } from './models/CartItem.js';
 import { Order } from './models/Order.js';
+import { User } from './models/User.js';
 import { defaultProducts } from './defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from './defaultData/defaultDeliveryOptions.js';
 import { defaultCart } from './defaultData/defaultCart.js';
 import { defaultOrders } from './defaultData/defaultOrders.js';
 import fs from 'fs';
-
+import authRoutes from './routes/auth.js';
+import bcrypt from 'bcryptjs';
 const app = express();
 const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
@@ -38,7 +41,7 @@ app.use('/api/cart-items', cartItemRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reset', resetRoutes);
 app.use('/api/payment-summary', paymentSummaryRoutes);
-
+app.use('/api/auth', authRoutes);
 // Serve static files from the dist folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -63,6 +66,35 @@ app.use((err, req, res, next) => {
 // Sync database and load default data if none exist
 await sequelize.sync();
 
+let defaultUser = await User.findOne({
+  where: {
+    email: 'demo@example.com',
+  },
+});
+
+if (!defaultUser) {
+  const hashedPassword = await bcrypt.hash('demo-password', 10);
+
+  defaultUser = await User.create({
+    name: 'Demo User',
+    email: 'demo@example.com',
+    password: hashedPassword,
+    role: 'user',
+  });
+
+  console.log('Default demo user created.');
+}
+
+if (!defaultUser) {
+  defaultUser = await User.create({
+    name: 'Demo User',
+    email: 'demo@example.com',
+    password: 'demo-password',
+    role: 'user',
+  });
+
+  console.log('Default demo user created.');
+}
 const productCount = await Product.count();
 if (productCount === 0) {
   const timestamp = Date.now();

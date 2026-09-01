@@ -5,28 +5,42 @@ export const Order = sequelize.define('Order', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+    primaryKey: true,
   },
+
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'users',
+      key: 'id',
+    },
+  },
+
   orderTimeMs: {
     type: DataTypes.BIGINT,
-    allowNull: false
+    allowNull: false,
   },
+
   totalCostCents: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
+
   products: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: false,
   },
+
   createdAt: {
-    type: DataTypes.DATE(3)
+    type: DataTypes.DATE(3),
   },
+
   updatedAt: {
-    type: DataTypes.DATE(3)
+    type: DataTypes.DATE(3),
   },
 }, {
   defaultScope: {
-    order: [['createdAt', 'ASC']]
-  }
+    order: [['createdAt', 'ASC']],
+  },
 });
